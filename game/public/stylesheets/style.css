@@ -164,6 +164,10 @@ body {
   color: #fafafa;
 }
 
+.winner{
+  color: lightgreen;
+}
+
 /* MEDIA QUERIES */
 
 @media all and (max-width: 768px) {
