@@ -4,11 +4,28 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
+
+/*Mongoose stuff*/
+var mongoose = require('mongoose');
+var db = mongoose.connect('mongodb://dev:password@ds115546.mlab.com:15546/tictactoe');
+
 
 var index = require('./routes/index');
-var users = require('./routes/users');
+var login = require('./routes/login');
+var register = require('./routes/register');
 
 var app = express();
+var server = require('http').Server(app).listen(2000);
+var io = require('socket.io')(server);
+
+/*Session for tracking logins*/
+app.use(session({
+    //properties that are part of express-session, not created by us
+    secret: 'mysecret',
+    resave: true,
+    saveUninitialized: false
+}));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -22,8 +39,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/users', users);
+app.use('/secure', index);
+app.use('/login', login);
+app.use('/register', register);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

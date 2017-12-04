@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+<form method='post' action=''>
+    <label for='username'>Username</label>
+    <input type='text' id='username' name='username' placeholder='username'/><br/>
+    <label for='password'>Password</label>
+    <input type='password' id='password' name='password' placeholder='password'/><br/>
+    <label for='passwordconf'>Password Conf</label>
+    <input type='password' id='passwordconf' name='passwordConf' placeholder='confirm password'/><br/>
+    <input type='submit' name='submit' value='Register'/>
+</form>
+
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.4/lodash.min.js"></script>
+    <script src="https://unpkg.com/jquery"></script>
+<script>
+
+    var socket = io.connect('http://localhost:2000');
+</script>
+</body>
+</html>
