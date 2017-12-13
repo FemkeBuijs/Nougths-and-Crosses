@@ -3,10 +3,8 @@ var router = express.Router();
 var path = require('path');
 
 var app = express();
-
-app.get('/', function(req, res, next) {
-  res.sendFile(path.join(__dirname, '../views/index.html'));
-});
+var server = require('http').createServer(app).listen(2000);
+var io = require('socket.io')(server);
 
 io.on('connection', function(socket){
   socket.on('message-from-client', function(message){

@@ -13,10 +13,7 @@ var mongoose = require('mongoose');
 var db = mongoose.connect('mongodb://dev:password@ds115546.mlab.com:15546/tictactoe');
 
 
-var game = require('./routes/game');
-var login = require('./routes/login');
-var register = require('./routes/register');
-var logout = require('./routes/logout');
+var index = require('./routes/index');
 
 /*Session for tracking logins*/
 app.use(session({
@@ -38,10 +35,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', game);
-app.use('/login', login);
-app.use('/register', register);
-app.use('/logout', logout);
+app.use('/secure', index);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

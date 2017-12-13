@@ -3,9 +3,7 @@ var router = express.Router();
 var path = require('path');
 var User = require('../models/userSchema.js');
 
-var app = express();
-
-app.get('/', function(req, res, next){
+router.get('/', function(req, res, next){
     res.sendFile(path.join(__dirname, '../views/register.html'));
 });
 
@@ -29,7 +27,7 @@ router.post('/', function(req, res, next){
                     req.session.userId = data._id;
                     req.session.loggedIn = true;
                     //Send page to /secure
-                    return res.redirect('/secure');
+                    return res.redirect('/');
                 }
             })
         }
