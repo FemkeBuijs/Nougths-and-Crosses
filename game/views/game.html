@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+
+    <div class="container">
+        <a href="/logout">Log out</a>
+        <h2 class="notification"></h2>
+        <div class="grid">
+            <div class="square" id="0"></div>
+            <div class="square" id="1"></div>
+            <div class="square" id="2"></div>
+            <div class="square" id="3"></div>
+            <div class="square" id="4"></div>
+            <div class="square" id="5"></div>
+            <div class="square" id="6"></div>
+            <div class="square" id="7"></div>
+            <div class="square" id="8"></div>
+        </div>
+        <div class="stats">
+            <h4>Player X: <span class="playerX">0</span></h4>
+            <h4>Player O: <span class="playerO">0</span></h4>
+            <h4>Draw: <span class="draw">0</span></h4>
+        </div>
+    </div>
+    <!--<div class="modal">-->
+        <!--<div class="modal-content">-->
+            <!--<div class="modal-box choice-container hidden">-->
+                <!--<div class="modal-choice tile">X</div>-->
+                <!--<div class="modal-choice tile">O</div>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <script src="http://localhost:2000/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.4/lodash.min.js"></script>
+    <script src="https://unpkg.com/jquery"></script>
+    <script src="/javascripts/main.js"></script>
+</body>
+</html>
