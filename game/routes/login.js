@@ -14,6 +14,7 @@ router.post('/', function(req, res, next){
             username: req.body.username,
             password: req.body.password
         };
+        //activate the authentication function
         User.authenticate(userData.username, userData.password, function(err, data){
             if(err){
                 return err
