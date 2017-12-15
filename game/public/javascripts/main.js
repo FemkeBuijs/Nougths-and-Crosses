@@ -31,25 +31,27 @@ $('.square').on('click', function(){
 });
 
 function player(current_tile){
-    //send message to the server with the current player and current tile id
-    socket.emit('message-from-client', { player: game.currentPlayer, tile: current_tile });
     //insert the tile id into the current pattern array, but in its chronological place using Lodash sortedIndex      //to find the correct index (the 0 means delete nothing in the array)
     current_pattern.splice(_.sortedIndex(current_pattern, current_id), 0, parseInt(current_id));
+    //send message to the server with the current player, current tile id and current pattern
+    socket.emit('message-from-client', { player: game.currentPlayer, tile: current_tile, pattern: current_pattern });
+}
 
+socket.on('message-from-server', function(player, tile_id, current_pattern) {
     checkWinner(current_pattern, winPatterns, function(err, isWinner, winningArray){
         if(err) {
             console.log(err);
         } else if (isWinner){
             highlightPattern(winningArray)
+        } else {
+            console.log('no winner');
         }
     });
-}
 
-socket.on('set-tile-from-server', function(tile_id, data) {
     //add a clicked class to the tiles as to avoid the tile value to be changed, and insert the data value
-    $('#' + tile_id).addClass('clicked').text(data);
+    $('#' + tile_id).addClass('clicked').text(player);
     //change player based on previous player
-    if (data === 'X') {
+    if (player === 'X') {
         $('.playerTurn').text('O');
         game.currentPlayer = 'O';
         current_pattern = patternO;

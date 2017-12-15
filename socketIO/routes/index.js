@@ -8,7 +8,7 @@ var io = require('socket.io')(server);
 
 io.on('connection', function(socket){
   socket.on('message-from-client', function(message){
-    io.emit('set-tile-from-server', message.tile, message.player);
+    io.emit('message-from-server', message.player, message.tile, message.pattern);
   });
   socket.on('reset-from-client', function(reset){
     io.emit('reset-from-server', reset.clicked, reset.highlight, reset.html)
